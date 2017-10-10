@@ -20,8 +20,8 @@ sub new {
    my $agent = delete $args{agent} || "WebServie::Avgle agent $VERSION";
 
    my $self = {
-       base_uri => "https://api.avgle.com",
-       agent    => Furl->new( agent => "$agent"),
+       _base_uri => "https://api.avgle.com",
+       _agent    => Furl->new( agent => "$agent"),
    };
 
     return bless $self,$class;
@@ -30,29 +30,43 @@ sub new {
 sub get_categories {
     my ($self, %args) = @_;
 
-    my $uri = URI->new($self->{base_uri});
-    $uri->path("/v1/categories");
+    my $param = {
+        path        => '/v1/categories',
+        die_message => "Avgle video categories",
+    };
 
-    my $res = $self->{agent}->get($uri);
+    my $req = $self->_get_req($param);
+
+    return $req->{"categories"};
+}
+
+sub _get_req {
+    my ($self,$args) = @_;
+
+    my $uri = URI->new($self->{_base_uri});
+    $uri->path($args->{"path"});
+
+    my $res = $self->{_agent}->get($uri);
 
     unless ( $res->is_success ){
-        croak "Don't get Avgle video categories";
+        return croak "Can't get $args->{die_message}";
     }
 
-    my $pear_hash_data = {};
+    my $hash_res = {};
 
     eval{
-       $pear_hash_data = decode_json($res->content);
+       $hash_res = decode_json($res->content);
     };
     if($@){
-        croak "Can't decode Avgle video categories";
+        return croak "Can't decode $args->{die_message}";
     }
 
-    if( $pear_hash_data->{success} ){
-        return $pear_hash_data->{response}->{categories};
+    if( $hash_res->{success} ){
+        return $hash_res->{response};
     } else {
-        croak "Can't get Avgle video categories";
+        return croak "Can't get $args->{die_message}";
     }
+
 }
 
 
@@ -72,7 +86,21 @@ WebService::Avgle - API Client for Avgle
 
 =head1 DESCRIPTION
 
-WebService::Avgle is ...
+WebService::Avglje is Avgle webservice module.
+Avgle is porn site that  provide api.
+
+
+=head1 INTERFACE
+
+=head2 Class Methods
+
+    WebService::Avgle->new;
+
+Common ones new methods.
+
+=head2 Instacnce Methods
+
+=head3 get_categories
 
 =head1 LICENSE
 
