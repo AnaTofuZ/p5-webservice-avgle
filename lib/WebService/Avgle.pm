@@ -27,7 +27,7 @@ sub new {
     return bless $self,$class;
 }
 
-sub get_categories {
+sub categories {
     my ($self, %args) = @_;
 
     my $param = {
@@ -37,7 +37,7 @@ sub get_categories {
 
     my $req = $self->_get_req($param);
 
-    return $req->{"categories"};
+    return @{$req->{"categories"}};
 }
 
 sub _get_req {
@@ -109,6 +109,10 @@ Common ones new methods.
 =head2 Instacnce Methods
 
 =head3 get_categories
+
+=head1 ORIGINAL API DOCUMENT
+
+L<Avgle API v1 Reference |https://avgle.github.io/doc>
 
 =head1 LICENSE
 

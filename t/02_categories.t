@@ -9,7 +9,7 @@ use WebService::Avgle;
 subtest 'catergories' => sub {
     my $avgle = WebService::Avgle->new;
 
-    cat_ok $avgle, 'categories';
+    can_ok ($avgle,'categories');
 };
 
 done_testing;

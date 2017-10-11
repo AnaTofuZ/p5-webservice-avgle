@@ -24,6 +24,10 @@ Common ones new methods.
 
 ### get\_categories
 
+# ORIGINAL API DOCUMENT
+
+[Avgle API v1 Reference ](https://avgle.github.io/doc)
+
 # LICENSE
 
 Copyright (C) AnaTofuZ.

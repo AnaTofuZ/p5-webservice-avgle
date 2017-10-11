@@ -8,6 +8,6 @@ use WebService::Avgle;
 
 my $avgle = WebService::Avgle->new;
 
-my $categories = $avgle->get_categories;
+my @categories = $avgle->categories;
 
-print Dumper $categories;
+print Dumper \@categories;
