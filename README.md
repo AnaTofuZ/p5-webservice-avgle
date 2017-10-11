@@ -1,14 +1,32 @@
 # NAME
 
-WebService::Avgle - It's new $module
+WebService::Avgle - API Client for Avgle
 
 # SYNOPSIS
 
     use WebService::Avgle;
+    my $avgle = WebService::Avgle->new;
 
 # DESCRIPTION
 
-WebService::Avgle is ...
+WebService::Avglje is Avgle webservice module.
+Avgle is porn site that  provide api.
+
+# INTERFACE
+
+## Class Methods
+
+    WebService::Avgle->new;
+
+Common ones new methods.
+
+## Instacnce Methods
+
+### get\_categories
+
+# ORIGINAL API DOCUMENT
+
+[Avgle API v1 Reference ](https://avgle.github.io/doc)
 
 # LICENSE
 
