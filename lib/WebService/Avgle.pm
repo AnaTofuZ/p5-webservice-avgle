@@ -46,16 +46,25 @@ sub _get_req {
     my $uri = URI->new($self->{_base_uri});
     $uri->path($args->{"path"});
 
-    my $res = $self->{_agent}->get($uri);
+    my $res = $self->{_agent}->get($uri->as_string);
 
     unless ( $res->is_success ){
         return croak "Can't get $args->{die_message}";
     }
 
+    return $self->_decode_res(+{
+        res         => $res->content,
+        die_message => $args->{die_message},
+    });
+}
+
+sub _decode_res {
+    my ($self,$args) = @_;
+
     my $hash_res = {};
 
     eval{
-       $hash_res = decode_json($res->content);
+       $hash_res = decode_json($args->{res});
     };
     if($@){
         return croak "Can't decode $args->{die_message}";
@@ -66,7 +75,6 @@ sub _get_req {
     } else {
         return croak "Can't get $args->{die_message}";
     }
-
 }
 
 

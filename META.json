@@ -1,5 +1,5 @@
 {
-   "abstract" : "It's new $module",
+   "abstract" : "API Client for Avgle",
    "author" : [
       "AnaTofuZ <anatofuz@gmail.com>"
    ],
@@ -42,6 +42,11 @@
       },
       "runtime" : {
          "requires" : {
+            "Encode" : "0",
+            "Furl" : "0",
+            "IO::Socket::SSL" : "0",
+            "JSON" : "0",
+            "URI" : "0",
             "perl" : "5.008001"
          }
       },
@@ -52,6 +57,17 @@
       }
    },
    "release_status" : "unstable",
+   "resources" : {
+      "bugtracker" : {
+         "web" : "https://github.com/AnaTofuZ/p5-webservice-avgle/issues"
+      },
+      "homepage" : "https://github.com/AnaTofuZ/p5-webservice-avgle",
+      "repository" : {
+         "type" : "git",
+         "url" : "git://github.com/AnaTofuZ/p5-webservice-avgle.git",
+         "web" : "https://github.com/AnaTofuZ/p5-webservice-avgle"
+      }
+   },
    "version" : "0.01",
    "x_authority" : "cpan:ANATOFUZ",
    "x_serialization_backend" : "JSON::PP version 2.27300"
